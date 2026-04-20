@@ -1,0 +1,21 @@
+---
+- name: Cisco IOS Facts Demo - Raw SSH
+  hosts: R1
+  gather_facts: no
+
+  tasks:
+    - name: Get IOS version (test connectivity)
+      ansible.builtin.raw: show version
+      register: version
+
+    - name: Show version
+      ansible.builtin.debug:
+        var: version.stdout_lines
+
+    - name: Get interface facts (ios_facts equivalent)
+      ansible.builtin.raw: show ip interface brief
+      register: interfaces
+
+    - name: Show interfaces
+      ansible.builtin.debug:
+        var: interfaces.stdout_lines

@@ -1,0 +1,14 @@
+all:
+  children:
+    routers:
+      vars:
+        ansible_user: admin
+        ansible_password: admin
+        ansible_become: true
+        ansible_become_method: enable
+        ansible_become_password: admin
+      children:
+        vios_group:
+          hosts:
+            R1:
+              ansible_host: 192.168.37.197
